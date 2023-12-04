@@ -5,7 +5,6 @@
   <meta name="description"
     content="Test your network speed now. OpenSpeedTest™ for the BEAD Challenge process" />
   <link href="assets/css/app.css" rel="stylesheet" type="text/css" />
-  <script> window.matchMedia&&window.matchMedia("(prefers-color-scheme: light)").matches&&(document.head.innerHTML+='<link id="darkmode" rel="stylesheet" href="assets/css/darkmode.css" type="text/css"/>');function getCookieValue(b,a){return(a=document.cookie.match("(^|;)\\s*"+b+"\\s*=\\s*([^;]+)"))?a.pop():""}if("light"===getCookieValue("mode")){var darkStyle=document.getElementById("darkmode");darkStyle&&darkStyle.parentNode.removeChild(darkStyle)}; </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -443,8 +442,9 @@ please get in touch with support@openspeedtest.com.
         <img style="height: 18px;" src="https://beadchallenge.vercel.app/dot_red.png" />
         Unreliable or poor internet? Take a speed test to measure the quality of your household’s
         internet service. Completing a speed test on three separate days will help ensure your
-        neighborhood gets its fair share of funding for broadband improvements (Click here for full instructions).
+	neighborhood gets its fair share of funding for broadband improvements.
     </h2>
+    <h2>(Click here for full instructions).</h2>
   </div>
   <div class="content">
     <p title="Realice una prueba de velocidad para medir la calidad del servicio de Internet de su hogar. Al completar una prueba de velocidad con esta herramienta, estás participando en el Proceso de Desafío del Programa de Equidad, Acceso e Implementación de Banda Ancha (“BEAD”). Incluya su dirección o código postal y su dirección de correo electrónico cuando envíe sus resultados."
@@ -464,9 +464,13 @@ please get in touch with support@openspeedtest.com.
         <br><br>
         <b>What happens after I submit my speed test?</b> Completing and submitting a speed test with your address
         is step 1! You’ll need to complete two more speed tests on two separate days to complete the process.
-        To help you out, we will send you email reminders to complete your second and third speed tests.
-        <br><br>
-        Questions? Reach out to IEI Team at <b>beadchallenge@uchicago.edu</b>. 
+	To help you out, we will send you email reminders to complete your second and third speed tests.
+	<b><br>
+	The University of Chicago’s Internet Equity Initiative will be analyzing this 
+	internet performance data on behalf of our partners.
+	</b>
+	<br><br>
+        Questions? Reach out to IEI Team at <b>internetequity@uchicago.edu</b>. 
         <br><br>
         Thanks for your help improving internet access in Illinois!
         <br>&nbsp; &nbsp; &nbsp; - Internet Equity Initiative Team
@@ -485,7 +489,7 @@ please get in touch with support@openspeedtest.com.
     </div>
     <div class="centered">
         <button class="getloc" title="Obtener Mi Ubicación" onclick="getSTULocation()" style="margin-right: 10px; width: 200px">Get My location &#x25B6;</button>
-        <textarea id="attest_address" cols="40" rows="1" placeholder="Address" style="width: 250px"></textarea>
+        <textarea id="attest_address" cols="40" rows="1" placeholder="Street Address" style="width: 250px"></textarea>
     </div>
     <div class="centered">
         <p 
@@ -515,12 +519,10 @@ please get in touch with support@openspeedtest.com.
     <p style="font-size: 12px;">© Copyright 2013-2023 OpenSpeedTest™ All Rights Reserved.</p>
 </div>
 <div class="Credits">
-    <p style="font-size: 12px;">Version 0.9.3</p>
+    <p style="font-size: 12px;">Version 0.9.5</p>
 </div>
   
-  <!--script src="assets/js/app-2.5.4.min.js"></script-->
   <script src="assets/js/app-2.5.4.js"></script>
-  <!--script src="assets/js/darkmode.js"></script-->
 
   <script>
     var coll = document.getElementsByClassName("collapsible");
