@@ -153,7 +153,6 @@
     }
     p {
         font-family: Roboto-Medium, Roboto;
-        font-style: italic;
     }
     input {
         box-sizing: border-box;
@@ -411,11 +410,32 @@ function ostOnload() {
     }
 
     function getSTULocation() {
+	var streetaddr = ""
+	var attest_addr = document.getElementById('attest_address');
+	attest_addr.value = "Searching...";
         navigator.geolocation.getCurrentPosition((loc)=> {
-            console.log("INFO:"+loc);
-        }, (err)=>{
-            console.log("ERROR:"+err);
-        });
+            console.log("INFO:"+loc.coords.latitude+" "+loc.coords.longitude);
+			  axios({method: 'GET',
+					    url: `https://83rfidkjpe.execute-api.us-east-2.amazonaws.com/getmyloc?lat=${loc.coords.latitude}&lng=${loc.coords.longitude}`,
+				 //headers: {'Referrer': 'https://beadchallenge.org'}
+				})
+                 .then((responseText) => {
+		 console.log(JSON.stringify(responseText));
+                 return responseText['data']['address'];
+             })
+             .then(jsonData => {
+	         streetaddr = jsonData
+                 console.log("INFO:"+JSON.stringify(streetaddr));
+	         attest_addr.value = streetaddr;
+             })
+             .catch(error => {
+                 console.log(error);
+		 attest_addr.value = "";
+             })
+             }, (err)=>{
+                 console.log("ERROR:"+err);
+		 attest_addr.value = "";
+             });
     }
 
   </script>
@@ -465,9 +485,12 @@ please get in touch with support@openspeedtest.com.
         <b>What happens after I submit my speed test?</b> Completing and submitting a speed test with your address
         is step 1! You’ll need to complete two more speed tests on two separate days to complete the process.
 	To help you out, we will send you email reminders to complete your second and third speed tests.
-	<b><br>
+	<b><br><br>
 	The University of Chicago’s Internet Equity Initiative will be analyzing this 
 	internet performance data on behalf of our partners.
+	By submitting my information I agree to allow University of Chicago Internet Equity Initiative to
+	analyze these data and share with the state broadband office and the ISP I am challenging.
+	We are committed to your privacy and the data from this website will never be sold.
 	</b>
 	<br><br>
         Questions? Reach out to IEI Team at <b>internetequity@uchicago.edu</b>. 
@@ -481,15 +504,18 @@ please get in touch with support@openspeedtest.com.
                onchange="onchange_attest_email(this.value)"
                oninput="onchange_attest_email(this.value)">
         </input>
-        <input type="text" id="attest_zipcode" cols="20" rows="1" placeholder="ZipCode"
+        <input type="text" id="attest_zipcode" cols="20" rows="1" placeholder="ZIP Code"
                style="margin-right: 15px; width: 200px"
                onchange="onchange_attest_zipcode(this.value)"
                oninput="onchange_attest_zipcode(this.value)">
         </input>
     </div>
     <div class="centered">
-        <button class="getloc" title="Obtener Mi Ubicación" onclick="getSTULocation()" style="margin-right: 10px; width: 200px">Get My location &#x25B6;</button>
-        <textarea id="attest_address" cols="40" rows="1" placeholder="Street Address" style="width: 250px"></textarea>
+        <button class="getloc" title="Obtener Mi Ubicación" onclick="getSTULocation()" style="margin-right: 10px; width: 450px">Get My Location &#x25BC;</button>
+        <!--textarea id="attest_address" cols="40" rows="1" placeholder="Street Address" style="width: 250px"></textarea-->
+    </div>
+    <div class="centered">
+        <textarea id="attest_address" cols="40" rows="3" placeholder="Street Address" style="width: 450px"></textarea>
     </div>
     <div class="centered">
         <p 
@@ -519,7 +545,7 @@ please get in touch with support@openspeedtest.com.
     <p style="font-size: 12px;">© Copyright 2013-2023 OpenSpeedTest™ All Rights Reserved.</p>
 </div>
 <div class="Credits">
-    <p style="font-size: 12px;">Version 0.9.5</p>
+    <p style="font-size: 12px;">Version 0.9.8-rev17</p>
 </div>
   
   <script src="assets/js/app-2.5.4.js"></script>
@@ -577,10 +603,10 @@ please get in touch with support@openspeedtest.com.
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }}).then(()=>{
                 alert("Congratulations: your data has been successfully submitted!\n"+
-                      "Please, check and confirm your email you haven't done yet.\n"+
+                      "Please, check and confirm the data on the email you're about to receive today.\n"+
                       "\n"+
                       "¡Felicitaciones: sus datos han sido enviados exitosamente!\n"+
-                      "Por favor, revisa y confirma tu correo electrónico que aún no lo has hecho.\n"
+                      "Por favor, revisa y confirma los datos del email que estás a punto de recibir hoy.\n"
                       );
 
             })
