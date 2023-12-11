@@ -13,8 +13,10 @@ function getSaveTestDataBEADChallenge(stdQueryData){
   var attest_down = document.getElementById("attest_down").value;
   var attest_up = document.getElementById("attest_up").value;
   var attest_address = btoa(document.getElementById("attest_address").value);
+  var attest_firstname = document.getElementById("attest_firstname").value;
+  var attest_lastname = document.getElementById("attest_lastname").value;
   //save extra data for BEAD Challenge
-  saveTestDataBEADChallenge = "https://beadchallenge.org?" + stdQueryData + "&email=" + attest_email + "&zipcode=" + attest_zipcode + "&attest_down=" + attest_down + "&attest_up=" + attest_up + "&address=" + attest_address;
+  saveTestDataBEADChallenge = "https://beadchallenge.org?" + stdQueryData + "&email=" + attest_email + "&zipcode=" + attest_zipcode + "&attest_down=" + attest_down + "&attest_up=" + attest_up + "&address=" + attest_address + "&firstname=" + attest_firstname + "&lastname=" + attest_lastname;
   saveTestDataBEADChallenge = encodeURI(saveTestDataBEADChallenge);
   return saveTestDataBEADChallenge;
 }

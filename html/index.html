@@ -499,6 +499,14 @@ please get in touch with support@openspeedtest.com.
         <br>&nbsp; &nbsp; &nbsp; - Internet Equity Initiative Team
     </p>
     <div class="centered">
+        <input type="text" id="attest_firstname" cols="35" rows="1" placeholder="First Name"
+               style="margin-left:15px; margin-right: 10px; width: 225px">
+        </input>
+        <input type="text" id="attest_lastname" cols="35" rows="1" placeholder="Last Name"
+	       style="margin-right: 15px; width: 225px">
+        </input>
+    </div>
+    <div class="centered">
         <input type="email" id="attest_email" cols="30" rows="1" placeholder="Email"
                style="margin-left:15px; margin-right: 10px; width: 250px"
                onchange="onchange_attest_email(this.value)"
@@ -545,7 +553,7 @@ please get in touch with support@openspeedtest.com.
     <p style="font-size: 12px;">© Copyright 2013-2023 OpenSpeedTest™ All Rights Reserved.</p>
 </div>
 <div class="Credits">
-    <p style="font-size: 12px;">Version 0.9.8-rev17</p>
+    <p style="font-size: 12px;">Version 0.9.9-rev5</p>
 </div>
   
   <script src="assets/js/app-2.5.4.js"></script>
@@ -595,6 +603,16 @@ please get in touch with support@openspeedtest.com.
             if (document.getElementById("attest_up").value < 1) {
                 alert("ERROR: Please, enter a valid Upload speed attestation.\n"+
                       "ERROR: Por favor, Ingrese una declaración de velocidad de carga válida.");
+                return false;
+            }
+            if (!document.getElementById("attest_firstname").value) {
+                alert("ERROR: Please, enter your first name.\n"+
+                      "ERROR: Por favor, Ingrese su primero nombre");
+                return false;
+            }
+            if (!document.getElementById("attest_lastname").value) {
+                alert("ERROR: Please, enter your last name.\n"+
+                      "ERROR: Por favor, Ingrese su nombre de la familia");
                 return false;
             }
             
