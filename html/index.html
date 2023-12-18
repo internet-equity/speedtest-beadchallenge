@@ -239,9 +239,31 @@
         display: block; 
       }
     }
-  </style>
+    #loader {
+        border: 12px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 12px solid #444444;
+        width: 70px;
+        height: 70px;
+        animation: spin 1s linear infinite;
+    }
+    .loadercenter {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: auto;
+     }
+     @keyframes spin {
+        100% {
+           transform: rotate(360deg);
+        }
+     }
+ </style>
 </head>
 <body>
+<div id="loader" class="loadercenter"></div>
 <nav class="navbar">
     <div class="navbar-logo">
         <!--img src="./logo.svg" alt="Logo" /-->
@@ -543,7 +565,7 @@ please get in touch with support@openspeedtest.com.
         <input type="number" id="attest_up"cols="15" rows="1" placeholder="Upload Speed"></input>
     </div>
     <div class="centered">
-        <button class="getloc" title="Enviar" onclick="updateSaveTestDataBEADChallenge();" style="margin-right: 10px; width: 100px">Submit</button>
+        <button id="attest_submit" class="getloc" title="Enviar" onclick="updateSaveTestDataBEADChallenge();" style="margin-right: 10px; width: 100px">Submit</button>
     </div>
   </div>
   <div class="Credits">
@@ -555,7 +577,7 @@ please get in touch with support@openspeedtest.com.
     <p style="font-size: 12px;">© Copyright 2013-2023 OpenSpeedTest™ All Rights Reserved.</p>
 </div>
 <div class="Credits">
-    <p style="font-size: 12px;">Version 0.9.9-rev9</p>
+    <p style="font-size: 12px;">Version 0.9.9-rev12</p>
 </div>
   
   <script src="assets/js/app-2.5.4.js"></script>
@@ -617,24 +639,35 @@ please get in touch with support@openspeedtest.com.
                       "ERROR: Por favor, Ingrese su nombre de la familia");
                 return false;
             }
-            
+            document.getElementById("loader").style.visibility = "visible"; 
             axios.post(OpenSpeedTestdb, saveTestDataBEADChallenge,
                 {headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 }}).then(()=>{
+		document.getElementById("loader").style.visibility = "hidden"; 
                 alert("Congratulations: your data has been successfully submitted!\n"+
                       "Please, check and confirm the data on the email you're about to receive today.\n"+
                       "\n"+
                       "¡Felicitaciones: sus datos han sido enviados exitosamente!\n"+
                       "Por favor, revisa y confirma los datos del email que estás a punto de recibir hoy.\n"
                       );
+		var attest_button = document.getElementById("attest_submit")
+		attest_button.disabled = true;
+		attest_button.style.backgroundColor = "gray";
 
             })
             .catch((error)=>{
+		document.getElementById("loader").style.visibility = "hidden"; 
                 alert("ERROR: failed to send data ("+error+")");
             })           
         }
         </script>
-
+        <script>
+           document.onreadystatechange = function () {
+              if (document.readyState !== "complete") {
+                 document.getElementById("loader").style.visibility = "hidden"; 
+              }
+           }          
+        </script>
 </body>
 </html>
