@@ -369,7 +369,6 @@
 
     // Save Data to a Database
         var saveData = true;
-        //var saveDataURL = "//tigerteam.io:4500/save?data=";
         var saveDataURL = "https://83rfidkjpe.execute-api.us-east-2.amazonaws.com/save?data=";
         var OpenSpeedTestdb = saveDataURL;
 
@@ -438,7 +437,7 @@ function ostOnload() {
         navigator.geolocation.getCurrentPosition((loc)=> {
             console.log("INFO:"+loc.coords.latitude+" "+loc.coords.longitude);
 			  axios({method: 'GET',
-					    url: `https://83rfidkjpe.execute-api.us-east-2.amazonaws.com/getmyloc?lat=${loc.coords.latitude}&lng=${loc.coords.longitude}`,
+					    url: `https://83rfidkjpe.execute-api.us-east-2.amazonaws.com/getmyloc2?lat=${loc.coords.latitude}&lng=${loc.coords.longitude}`,
 				 //headers: {'Referrer': 'https://beadchallenge.org'}
 				})
                  .then((responseText) => {
@@ -452,11 +451,11 @@ function ostOnload() {
              })
              .catch(error => {
                  console.log(error);
-		 attest_addr.value = "";
+		 attest_addr.value = error;
              })
              }, (err)=>{
                  console.log("ERROR:"+err);
-		 attest_addr.value = "";
+		 attest_addr.value = error;
              });
     }
 
@@ -486,7 +485,7 @@ please get in touch with support@openspeedtest.com.
         internet service. Completing a speed test on three separate days will help ensure your
 	neighborhood gets its fair share of funding for broadband improvements.
     </h2>
-    <h2><i>(Click here for full instructions)</i></h2>
+    <h2><i>(Click <u style="color: red">here</u> for instructions and to submit your information)</i></h2>
   </div>
   <div class="content">
     <p title="Realice una prueba de velocidad para medir la calidad del servicio de Internet de su hogar. Al completar una prueba de velocidad con esta herramienta, estás participando en el Proceso de Desafío del Programa de Equidad, Acceso e Implementación de Banda Ancha (“BEAD”). Incluya su dirección o código postal y su dirección de correo electrónico cuando envíe sus resultados."
@@ -512,7 +511,7 @@ please get in touch with support@openspeedtest.com.
 	internet performance data on behalf of our partners.
 	By submitting my information I agree to allow University of Chicago Internet Equity Initiative to
 	analyze these data and share with the state broadband office and the ISP I am challenging.
-	We are committed to your privacy and the data from this website will never be sold.
+	<br>We are committed to your privacy and the data from this website will never be sold.
 	</b>
 	<br><br>
         Questions? Reach out to IEI Team at <b>internetequity@uchicago.edu</b>. 
@@ -543,12 +542,41 @@ please get in touch with support@openspeedtest.com.
         </input>
     </div>
     <div class="centered">
+        <input type="text" id="attest_streetnumber" cols="20" rows="1" placeholder="Street Number"
+               style="margin-left:15px; margin-right: 10px; width: 100px"
+	       oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
+        </input>
+        <input type="text" id="attest_streetname" cols="50" rows="1" placeholder="Street Name"
+	       style="margin-right: 15px; width: 350px"
+	       oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
+        </input>
+    </div>
+
+    <!--div class="centered">
         <button class="getloc" title="Obtener Mi Ubicación" onclick="getSTULocation()" style="margin-right: 10px; width: 450px">Get My Location &#x25BC;</button>
-        <!--textarea id="attest_address" cols="40" rows="1" placeholder="Street Address" style="width: 250px"></textarea-->
-    </div>
+    </div-->
+    <!--div class="centered">
+        <textarea id="attest_address" cols="40" rows="3" placeholder="Street Address (please check your address to ensure your house and street number are correct)." style="width: 450px"></textarea>
+    </div-->
     <div class="centered">
-        <textarea id="attest_address" cols="40" rows="3" placeholder="Street Address" style="width: 450px"></textarea>
+	<input type="text" id="attest_unitnumber" cols="10" rows="1" placeholder="Unit #"
+               style="width: 110px; margin-left:12px; margin-right: 10px;"
+               oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
+        </input>
+	<input type="text" id="attest_city" cols="10" rows="1" placeholder="City"
+               style="width: 110px; margin-right: 10px;"
+               oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
+        </input>
+	<input type="text" id="attest_state" cols="10" rows="1" placeholder="State"
+               style="width: 110px; margin-right: 10px;"
+               oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
+        </input>
     </div>
+    <!--div class="centered">
+	<div style="width: 460px; text-align:justify;text-justify: inter-word; background-color: lightgray">
+		<p style="margin-left: 10px; margin-right:10px"><em><b>Please Note:</b> The "Get My Location" buttom works best with the Chrome browser, and it may not be 100% accurate, make sure you have the Location Services enabled. You can also copy the address from <a href="https://il-bead-speed-test-map.netlify.app/" target="_blank">here</a>, and paste it at the "Street Address" field (or enter it manually). Make sure you include the unit number (important).</p></em>
+	</div>
+    </div-->
     <div class="centered">
         <p 
           title="Doy fe de que me he suscrito a un plan de Internet con:">
@@ -577,7 +605,7 @@ please get in touch with support@openspeedtest.com.
     <p style="font-size: 12px;">© Copyright 2013-2023 OpenSpeedTest™ All Rights Reserved.</p>
 </div>
 <div class="Credits">
-    <p style="font-size: 12px;">Version 0.9.9-rev12</p>
+    <p style="font-size: 12px;">Version 1.0.0-rev18</p>
 </div>
   
   <script src="assets/js/app-2.5.4.js"></script>

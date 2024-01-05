@@ -12,11 +12,18 @@ function getSaveTestDataBEADChallenge(stdQueryData){
   var attest_zipcode = document.getElementById("attest_zipcode").value;
   var attest_down = document.getElementById("attest_down").value;
   var attest_up = document.getElementById("attest_up").value;
-  var attest_address = btoa(document.getElementById("attest_address").value);
+  var attest_address = btoa(document.getElementById("attest_streetnumber").value.trim() + "," + 
+	                    document.getElementById("attest_streetname").value.trim() + "," +
+                            document.getElementById("attest_unitnumber").value.trim() + "," +
+                            document.getElementById("attest_city").value.trim() + "," +
+                            document.getElementById("attest_state").value.trim() + "," +
+	                    document.getElementById("attest_zipcode").value.trim());
   var attest_firstname = btoa(document.getElementById("attest_firstname").value);
   var attest_lastname = btoa(document.getElementById("attest_lastname").value);
+
+  var attest_unitnumber = btoa(document.getElementById("attest_unitnumber").value);
   //save extra data for BEAD Challenge
-  saveTestDataBEADChallenge = "https://beadchallenge.org?" + stdQueryData + "&email=" + attest_email + "&zipcode=" + attest_zipcode + "&attest_down=" + attest_down + "&attest_up=" + attest_up + "&address=" + attest_address + "&firstname=" + attest_firstname + "&lastname=" + attest_lastname;
+  saveTestDataBEADChallenge = "https://beadchallenge.org?" + stdQueryData + "&email=" + attest_email + "&zipcode=" + attest_zipcode + "&attest_down=" + attest_down + "&attest_up=" + attest_up + "&address=" + attest_address + "&firstname=" + attest_firstname + "&lastname=" + attest_lastname + "&attest_unit=" + attest_unitnumber;
   saveTestDataBEADChallenge = encodeURI(saveTestDataBEADChallenge);
   return saveTestDataBEADChallenge;
 }
