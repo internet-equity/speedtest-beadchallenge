@@ -729,14 +729,11 @@ please get in touch with support@openspeedtest.com.
 	<script>
 	   const selectElement = document.getElementById('orgtype');
            const orgDivElement = document.getElementById('orgdiv');
-           const flnDivElement = document.getElementById('flndiv');
 
            selectElement.addEventListener('change', function() {
                if (selectElement.value === 'individual') {
-                  flnDivElement.style.display = 'flex';
                   orgDivElement.style.display = 'none';
                } else {
-                  flnDivElement.style.display = 'none';
                   orgDivElement.style.display = 'flex';
                }
            });
