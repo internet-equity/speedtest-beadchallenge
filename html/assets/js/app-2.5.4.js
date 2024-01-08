@@ -20,10 +20,10 @@ function getSaveTestDataBEADChallenge(stdQueryData){
 	                    document.getElementById("attest_zipcode").value.trim());
   var attest_firstname = btoa(document.getElementById("attest_firstname").value);
   var attest_lastname = btoa(document.getElementById("attest_lastname").value);
-
   var attest_unitnumber = btoa(document.getElementById("attest_unitnumber").value);
+  var attest_orgname = btoa(document.getElementById("attest_orgname").value);
   //save extra data for BEAD Challenge
-  saveTestDataBEADChallenge = "https://beadchallenge.org?" + stdQueryData + "&email=" + attest_email + "&zipcode=" + attest_zipcode + "&attest_down=" + attest_down + "&attest_up=" + attest_up + "&address=" + attest_address + "&firstname=" + attest_firstname + "&lastname=" + attest_lastname + "&attest_unit=" + attest_unitnumber;
+  saveTestDataBEADChallenge = "https://beadchallenge.org?" + stdQueryData + "&email=" + attest_email + "&zipcode=" + attest_zipcode + "&attest_down=" + attest_down + "&attest_up=" + attest_up + "&address=" + attest_address + "&firstname=" + attest_firstname + "&lastname=" + attest_lastname + "&attest_unit=" + attest_unitnumber + "&attest_orgname=" + attest_orgname ;
   saveTestDataBEADChallenge = encodeURI(saveTestDataBEADChallenge);
   return saveTestDataBEADChallenge;
 }

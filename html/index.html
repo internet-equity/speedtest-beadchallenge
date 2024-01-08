@@ -520,6 +520,21 @@ please get in touch with support@openspeedtest.com.
         <br>&nbsp; &nbsp; &nbsp; - Internet Equity Initiative Team
     </p>
     <div class="centered">
+	<select name="orgtype" id="orgtype"
+	       style="margin-left:15px; margin-right:15px; width: 460px">
+              <optgroup label="Type">
+                 <option value="individual">Individual</option>
+                 <option value="organization">Organization</option>
+              </optgroup>
+        </select>
+    </div>
+    <div class="centered" id="orgdiv" style="display: none">
+        <input type="text" id="attest_orgname" cols="35" rows="1" placeholder="Organization Name"
+               style="margin-left:15px; margin-right: 15px; width: 460px"
+	       oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
+        </input>
+    </div>
+   <div class="centered" id="flndiv">
         <input type="text" id="attest_firstname" cols="35" rows="1" placeholder="First Name"
                style="margin-left:15px; margin-right: 10px; width: 225px"
 	       oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
@@ -560,15 +575,15 @@ please get in touch with support@openspeedtest.com.
     </div-->
     <div class="centered">
 	<input type="text" id="attest_unitnumber" cols="10" rows="1" placeholder="Unit #"
-               style="width: 110px; margin-left:12px; margin-right: 10px;"
+               style="width: 100px; margin-left:12px; margin-right: 10px;"
                oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
         </input>
 	<input type="text" id="attest_city" cols="10" rows="1" placeholder="City"
-               style="width: 110px; margin-right: 10px;"
+               style="width: 100px; margin-right: 10px;"
                oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
         </input>
 	<input type="text" id="attest_state" cols="10" rows="1" placeholder="State"
-               style="width: 110px; margin-right: 10px;"
+               style="width: 100px; margin-right: 15px;"
                oninput = 'this.value = this.value.replace(/[,]/g, " ")'>
         </input>
     </div>
@@ -605,7 +620,7 @@ please get in touch with support@openspeedtest.com.
     <p style="font-size: 12px;">© Copyright 2013-2023 OpenSpeedTest™ All Rights Reserved.</p>
 </div>
 <div class="Credits">
-    <p style="font-size: 12px;">Version 1.0.0-rev18</p>
+    <p style="font-size: 12px;">Version 1.0.0-rev28</p>
 </div>
   
   <script src="assets/js/app-2.5.4.js"></script>
@@ -658,15 +673,29 @@ please get in touch with support@openspeedtest.com.
                 return false;
             }
             if (!document.getElementById("attest_firstname").value) {
-                alert("ERROR: Please, enter your first name.\n"+
-                      "ERROR: Por favor, Ingrese su primero nombre");
-                return false;
+		const selectElement = document.getElementById('orgtype');
+		if (selectElement.value === "individual") {
+                    alert("ERROR: Please, enter your first name.\n"+
+                          "ERROR: Por favor, Ingrese su primero nombre");
+                    return false;
+		}
             }
             if (!document.getElementById("attest_lastname").value) {
-                alert("ERROR: Please, enter your last name.\n"+
-                      "ERROR: Por favor, Ingrese su nombre de la familia");
-                return false;
+		const selectElement = document.getElementById('orgtype');
+		if (selectElement.value === "individual") {
+  		     alert("ERROR: Please, enter your last name.\n"+
+                           "ERROR: Por favor, Ingrese su nombre de la familia");
+                     return false;
+		}
             }
+	    if  (!document.getElementById("attest_orgname").value) {
+		const selectElement = document.getElementById('orgtype');
+                if (selectElement.value != "individual") {
+                     alert("ERROR: Please, enter your last name.\n"+
+                           "ERROR: Por favor, Ingrese su nombre de la familia");
+                     return false;
+                }
+	    }
             document.getElementById("loader").style.visibility = "visible"; 
             axios.post(OpenSpeedTestdb, saveTestDataBEADChallenge,
                 {headers: {
@@ -697,5 +726,20 @@ please get in touch with support@openspeedtest.com.
               }
            }          
         </script>
+	<script>
+	   const selectElement = document.getElementById('orgtype');
+           const orgDivElement = document.getElementById('orgdiv');
+           const flnDivElement = document.getElementById('flndiv');
+
+           selectElement.addEventListener('change', function() {
+               if (selectElement.value === 'individual') {
+                  flnDivElement.style.display = 'flex';
+                  orgDivElement.style.display = 'none';
+               } else {
+                  flnDivElement.style.display = 'none';
+                  orgDivElement.style.display = 'flex';
+               }
+           });
+	</script>
 </body>
 </html>
