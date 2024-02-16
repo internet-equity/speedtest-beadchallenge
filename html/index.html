@@ -507,6 +507,7 @@ please get in touch with support@openspeedtest.com.
         is step 1! You’ll need to complete two more speed tests on two separate days to complete the process.
 	To help you out, we will send you email reminders to complete your second and third speed tests.
 	<br><br><u>
+	<b>What is the subscribed speed and how to find it?</b>
         People undertaking a BEAD challenge must indicate the speed tier of their Internet subscription.
         This is a specific range of download and upload speeds offered by an Internet Service Provider (ISP) under a particular plan.
         ISPs typically offer various plans, each with different maximum speeds for downloading and uploading data.
@@ -602,18 +603,31 @@ please get in touch with support@openspeedtest.com.
 		<p style="margin-left: 10px; margin-right:10px"><em><b>Please Note:</b> The "Get My Location" buttom works best with the Chrome browser, and it may not be 100% accurate, make sure you have the Location Services enabled. You can also copy the address from <a href="https://il-bead-speed-test-map.netlify.app/" target="_blank">here</a>, and paste it at the "Street Address" field (or enter it manually). Make sure you include the unit number (important).</p></em>
 	</div>
     </div-->
-    <div class="centered">
+    <div class="centered" style="margin-top:30px; text-align:center;">
         <p 
-          title="Doy fe de que me he suscrito a un plan de Internet con:">
-          <b>
+          title="Velocidad medida (Mbps):">
             <div class="popup" onclick="translate_to_spanish()">
-            I attest that I have subscribed for an Internet plan of (Mbps):
-            <span class="popuptext" id="attestPopup">Doy fe de que me he suscrito a un plan de Internet con (Mbps):</span>
+		    <b>Measured Speed (Mbps):</b><br>
+		    (The measured speed is automatically filled)
+            <span class="popuptext" id="attestPopup">Velocidad medida(Mbps):</span>
             </div>
-          </b>
         </p>
     </div>
-    <div class="centered">
+    <div class="centered" style="margin-bottom:30px">
+        <input type="number" id="measured_down" cols="15" rows="1" placeholder="Download Speed" style="margin-right: 10px; margin-left: 5px;" readonly></input>
+        <input type="number" id="measured_up"cols="15" rows="1" placeholder="Upload Speed" readonly></input>
+    </div>
+    <div class="centered" style="text-align:center;">
+        <p 
+           title="Doy fe de que me he suscrito a un plan de Internet con:">
+            <div class="popup" onclick="translate_to_spanish()">
+		    <b>I attest that I have <u>subscribed</u> to an Internet plan of (Mbps):</b><br>
+		    (Please see the instructions to understand how to find these numbers)
+            <span class="popuptext" id="attestPopup">Doy fe de que me he suscrito a un plan de Internet con (Mbps):</span>
+            </div>
+	</p>
+    </div>
+    <div class="centered" style="margin-bottom: 30px">
         <input type="number" id="attest_down" cols="15" rows="1" placeholder="Download Speed" style="margin-right: 10px; margin-left: 5px;"></input>
         <input type="number" id="attest_up"cols="15" rows="1" placeholder="Upload Speed"></input>
     </div>
@@ -627,10 +641,10 @@ please get in touch with support@openspeedtest.com.
   </div>
   <div class="Credits">
     <a href="https://openspeedtest.com?ref=Self-Hosted&Run">SpeedTest by OpenSpeedTest™</a> is a Free and <a href="https://github.com/openspeedtest/Speed-Test">Open-Source HTML5 Network Speed Test</a> Software.
-    <p style="font-size: 12px;">© Copyright 2013-2023 OpenSpeedTest™ All Rights Reserved.</p>
+    <p style="font-size: 12px;">© Copyright 2013-2024 OpenSpeedTest™ All Rights Reserved.</p>
 </div>
 <div class="Credits">
-    <p style="font-size: 12px;">Version 1.0.0-rev33</p>
+    <p style="font-size: 12px;">Version 1.0.0-rev42</p>
 </div>
   
   <script src="assets/js/app-2.5.4.js"></script>

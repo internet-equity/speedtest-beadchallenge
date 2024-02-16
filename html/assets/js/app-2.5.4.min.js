@@ -1046,6 +1046,8 @@ window.onload = function() {
               +" zip code and email below and submit the results for analysis. Thank you.\n"
               +"     - The Internet Equity Initiative Team");
             }
+            document.getElementById("measured_down").value = downloadSpeed.toFixed(2);
+            document.getElementById("measured_up").value = uploadSpeed.toFixed(2);
             //preserve openspeedtest data
             saveTestDataBEADChallenge = getSaveTestDataBEADChallenge(stdQueryData);
             var circleSVG2 = document.getElementById("resultsData");
